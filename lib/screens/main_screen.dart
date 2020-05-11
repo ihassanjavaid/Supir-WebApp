@@ -19,17 +19,16 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-    // TODO
     setState(() {
       _selectedIndex = index;
       if (index == 0){
         _webViewController.loadUrl('https://www.supir.app/');
       }
       if (index == 1){
-        _webViewController.loadUrl('https://www.supir.app/member-login/');
+        _webViewController.loadUrl('https://www.supir.app/gigs/');
       }
       if (index == 2){
-        _webViewController.loadUrl('https://www.supir.app/register/');
+        _webViewController.loadUrl('https://www.supir.app/tools/');
       }
     });
   }
@@ -39,50 +38,57 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       appBar: buildAppBar(),
       drawer: buildDrawer(context),
-      body: Center(
-        child: WebView(
-          initialUrl: 'https://www.supir.app/',
-          onWebViewCreated: (WebViewController webViewController) {
-            this._webViewController = webViewController;
-            _controller.complete(webViewController);
-          },
-        ),
+      body: buildBody(),
+      bottomNavigationBar: buildBottomNavigationBar(),
+    );
+  }
+
+  buildBody() {
+    return Center(
+      child: WebView(
+        initialUrl: 'https://www.supir.app/',
+        onWebViewCreated: (WebViewController webViewController) {
+          this._webViewController = webViewController;
+          _controller.complete(webViewController);
+        },
       ),
-//      body: IndexedStack(
-//        index: _selectedIndex,
-//        children: widget.screens,
-//      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: kHomeIcon,
-            title: Text(
-              'Home',
-            ),
-            activeIcon: kHomeIconActive,
+    );
+  }
+
+  buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      backgroundColor: kDefaultBackgroundColour,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: kHomeIcon,
+          title: Text(
+            'Home',
           ),
-          BottomNavigationBarItem(
-            icon: kPersonIcon,
-            title: Text(
-              'Gigs',
-            ),
-            activeIcon: kPersonIconActive,
-          ),
-          BottomNavigationBarItem(
-            icon: kSettingsIcon,
-            title: Text(
-              'Tools',
-            ),
-            activeIcon: kSettingsIconActive,
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: kDefaultGoldenColour,
-        onTap: _onItemTapped,
-        selectedIconTheme: IconThemeData(
-          color: kDefaultGoldenColour,
+          activeIcon: kHomeIconActive,
         ),
+        BottomNavigationBarItem(
+          icon: kPersonIcon,
+          title: Text(
+            'Gigs',
+          ),
+          activeIcon: kPersonIconActive,
+        ),
+        BottomNavigationBarItem(
+          icon: kSettingsIcon,
+          title: Text(
+            'Tools',
+          ),
+          activeIcon: kSettingsIconActive,
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: kDefaultGoldenColour,
+      onTap: _onItemTapped,
+      selectedIconTheme: IconThemeData(
+        color: kDefaultGoldenColour,
       ),
+      showUnselectedLabels: false,
+      selectedFontSize: 16,
     );
   }
 

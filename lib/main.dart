@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:supir/index.dart';
 import 'package:supir/screens/main_screen.dart';
+import 'package:supir/utilities/constants.dart';
 
 void main() {
   runApp(Supir());
@@ -12,18 +12,10 @@ class Supir extends StatelessWidget {
     return MaterialApp(
       title: 'Supir',
       debugShowCheckedModeBanner: false,
-     initialRoute: Index.id,
-        routes: {
-          Index.id: (context) => Index(
-            screens: <Widget>[
-              MainScreen()
-              //Announcement(),
-              //UserMessages(),
-              //Contacts(),
-            ],
-          ),
-          MainScreen.id: (context) => MainScreen()
-        },
+        theme: ThemeData(
+          scaffoldBackgroundColor: kDefaultBackgroundColour,
+        ),
+        home: MainScreen(),
     );
   }
 }

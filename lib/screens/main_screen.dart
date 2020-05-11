@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:supir/utilities/constants.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:async';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:supir/utilities/constants.dart';
 
 class MainScreen extends StatefulWidget {
